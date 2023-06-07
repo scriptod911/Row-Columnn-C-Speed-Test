@@ -43,27 +43,34 @@ void printArray(int rows, int cols, int arr[rows][cols]) {
     }
 }
 
-int main() {
+int main(int argc, char *argv[]) {
     srand(time(NULL));
 
     int rows, cols;
     int minVal = 0, maxVal = 100;
 
-    printf("Enter the number of rows: ");
-    scanf("%d", &rows);
-    printf("Enter the number of columns: ");
-    scanf("%d", &cols);
+    if (argc >= 3) {
+        rows = atoi(argv[1]);
+        cols = atoi(argv[2]);
 
-    // Check for large array sizes
-    if (rows <= 0 || cols <= 0 || rows > 10000 || cols > 10000) {
-        printf("Invalid array dimensions. Using default values.\n");
+        if (rows <= 0 || cols <= 0 || rows > 10000 || cols > 10000) {
+            printf("Invalid array dimensions. Using default values.\n");
+            rows = 3;
+            cols = 4;
+        }
+
+        if (argc >= 5) {
+            minVal = atoi(argv[3]);
+            maxVal = atoi(argv[4]);
+        }
+    } else {
+        printf("Insufficient command line arguments. Using default values.\n");
         rows = 3;
         cols = 4;
     }
 
     int arr[rows][cols];
 
-    // Check for excessively large array sizes
     if (rows * cols > 100000) {
         printf("Array size too big. Using default values for initialization range.\n");
     } else {
@@ -99,6 +106,4 @@ int main() {
 
     printf("Time taken for row-major order: %.6f seconds\n", rowMajorTime);
     printf("Time taken for column-major order: %.6f seconds\n", columnMajorTime);
-
-    return 0;
 }
