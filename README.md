@@ -2,6 +2,9 @@
 
 In row-major order, consecutive elements in a row are stored adjacently in memory, while in column-major order, consecutive elements in a column are stored adjacently. These differences in memory layout can affect how data is fetched from memory and impact cache utilization.
 
+Compiling [gcc] (not sure why you can't do it):
+    gcc -Wall -Wextra -std=c2x -pedantic main.c -o array-traversal
+
 Command-Line Usage:
     array-traversal [rows] [cols] [minVal maxVal]
 
