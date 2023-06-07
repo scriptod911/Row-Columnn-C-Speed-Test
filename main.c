@@ -47,18 +47,31 @@ int main() {
     srand(time(NULL));
 
     int rows, cols;
-    int minVal, maxVal;
+    int minVal = 0, maxVal = 100;
 
     printf("Enter the number of rows: ");
     scanf("%d", &rows);
     printf("Enter the number of columns: ");
     scanf("%d", &cols);
-    printf("Enter the minimum value for initialization: ");
-    scanf("%d", &minVal);
-    printf("Enter the maximum value for initialization: ");
-    scanf("%d", &maxVal);
+
+    // Check for large array sizes
+    if (rows <= 0 || cols <= 0 || rows > 10000 || cols > 10000) {
+        printf("Invalid array dimensions. Using default values.\n");
+        rows = 3;
+        cols = 4;
+    }
 
     int arr[rows][cols];
+
+    // Check for excessively large array sizes
+    if (rows * cols > 100000) {
+        printf("Array size too big. Using default values for initialization range.\n");
+    } else {
+        printf("Enter the minimum value for initialization: ");
+        scanf("%d", &minVal);
+        printf("Enter the maximum value for initialization: ");
+        scanf("%d", &maxVal);
+    }
 
     initializeArray(rows, cols, arr, minVal, maxVal);
 
@@ -86,4 +99,6 @@ int main() {
 
     printf("Time taken for row-major order: %.6f seconds\n", rowMajorTime);
     printf("Time taken for column-major order: %.6f seconds\n", columnMajorTime);
+
+    return 0;
 }
