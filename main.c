@@ -13,6 +13,16 @@ void traverseRowMajor(int arr[ROWS][COLS]) {
     }
 }
 
+void traverseColumnMajor(int arr[ROWS][COLS]) {
+    int i, j;
+
+    for (j = 0; j < COLS; j++) {
+        for (i = 0; i < ROWS; i++) {
+            printf("%d ", arr[i][j]);
+        }
+    }
+}
+
 int main() {
     int arr[ROWS][COLS] = {
         {1, 2, 3, 4},
@@ -20,7 +30,11 @@ int main() {
         {9, 10, 11, 12}
     };
 
+    printf("Row-Major Traversal:\n");
     traverseRowMajor(arr);
 
-    return 0;
+    printf("\n\n");
+
+    printf("Column-Major Traversal:\n");
+    traverseColumnMajor(arr);
 }
