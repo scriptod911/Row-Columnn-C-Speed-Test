@@ -9,7 +9,7 @@ void traverseRowMajor(int rows, int cols, int arr[rows][cols])
 	for (i = 0; i < rows; i++) {
 		for (j = 0; j < cols; j++) {
 			arr[i][j] +=
-		1; // Dummy operation to prevent loop optimization
+				1; // Dummy operation to prevent loop optimization
 		}
 	}
 }
@@ -20,14 +20,14 @@ void traverseColumnMajor(int rows, int cols, int arr[rows][cols])
 
 	for (j = 0; j < cols; j++) {
 		for (i = 0; i < rows; i++) {
-		arr[i][j] +=
-			1; // Dummy operation to prevent loop optimization
+			arr[i][j] +=
+				1; // Dummy operation to prevent loop optimization
 		}
 	}
 }
 
 void initializeArray(int rows, int cols, int arr[rows][cols], int minVal,
-		int maxVal)
+		     int maxVal)
 {
 	int i, j;
 
@@ -44,9 +44,9 @@ void printArray(int rows, int cols, int arr[rows][cols])
 
 	for (i = 0; i < rows; i++) {
 		for (j = 0; j < cols; j++) {
-	printf("%d ", arr[i][j]);
+			printf("%d ", arr[i][j]);
 		}
-	printf("\n");
+		printf("\n");
 	}
 }
 
@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
 		cols = atoi(argv[2]);
 
 		if (rows <= 0 || cols <= 0 || rows > 10000 || cols > 10000) {
-		printf("Invalid array dimensions. Using default values.\n");
+			printf("Invalid array dimensions. Using default values.\n");
 			rows = 3;
 			cols = 4;
 		}
