@@ -17,9 +17,13 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y clang-format
 
+      - name: Download Linux Kernel style file
+        run: |
+          curl -O https://raw.githubusercontent.com/torvalds/linux/master/.clang-format
+
       - name: Run clang-format
         run: |
-          find . -name "*.c" -print0 | xargs -0 clang-format -i
+          find . -name "*.c" -print0 | xargs -0 clang-format -i --style=file --fallback-style=none
 
       - name: Configure git
         run: |
