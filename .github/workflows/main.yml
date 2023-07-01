@@ -23,7 +23,7 @@ jobs:
 
       - name: Configure git
         run: |
-          git config --global user.name "Your GitHub Username"
+          git config --global user.name "scriptod911"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Commit changes
