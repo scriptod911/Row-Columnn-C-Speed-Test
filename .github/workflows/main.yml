@@ -32,17 +32,21 @@ jobs:
 
       - name: Commit changes
         run: |
+          git checkout -b apply-clang-format
           git add .
           git diff-index --quiet HEAD || git commit -m "Apply clang-format changes"
 
-      - name: Push changes
-        if: github.event_name == 'push'
+      - name: Push branch
         run: |
-          git push origin HEAD:main
+          git push origin apply-clang-format
 
       - name: Create pull request
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'push'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           branch_name="apply-clang-format"
-          git push origin HEAD:refs/heads/$branch_name
-          hub pull-request -b main -h $branch_name -m "Apply clang-format changes"
+          title="Apply clang-format changes"
+          body="This pull request applies the Linux Kernel coding style using clang-format."
+          hub api -X POST "/repos/$GITHUB_REPOSITORY/pulls" -H "Accept: application/vnd.github.v3+json" \
+            -F "head=$branch_name" -F "base=main" -F "title=$title" -F "body=$body"
